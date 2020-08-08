@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.condition.EnabledOnJre;
@@ -97,10 +99,25 @@ class MathutilsTest {
 		@Test
 		@DisplayName("MultiplyTest negatrive")
 		void multiplyNegative(){
-			assertEquals(2, mathutil.mul(-1, 2),"should be negative");
+			assertEquals(-2, mathutil.mul(-1, 2),"should be negative");
 		}
 		
 	}
+	
+	
+	@RepeatedTest(3)
+	@DisplayName("Repeated test for the multiply")
+	void repeatedTest(RepetitionInfo ri) {
+		System.out.println(ri.toString());
+		assertEquals(-2, mathutil.mul(-1, 2),"should be negative");
+	}
+	
+	/*
+	 	DefaultRepetitionInfo [currentRepetition = 1, totalRepetitions = 3]
+DefaultRepetitionInfo [currentRepetition = 2, totalRepetitions = 3]
+DefaultRepetitionInfo [currentRepetition = 3, totalRepetitions = 3]
+
+	 */
 	
 
 }
